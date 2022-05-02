@@ -21,9 +21,11 @@ REQUIRED_SEQUENCE = 4
 class Game:
 
     def __init__(self):
-        self.resetBoard()
+        self.board = []
+        self.boardHistory = []
+        self.reset_board()
 
-    def resetBoard(self):
+    def reset_board(self):
         self.board = [
             [EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL],
             [EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL],
@@ -34,7 +36,7 @@ class Game:
         ]
         self.boardHistory = []
 
-    def printBoard(self):
+    def print_board(self):
         for i in range(len(self.board)):
             for j in range(len(self.board[i])):
                 print(VERTICAL_SEPARATOR, '')
@@ -52,75 +54,75 @@ class Game:
                 print(VERTICAL_SEPARATOR, '')
         print(os.linesep)
 
-    def getAvailableMoves(self):
-        availableMoves = []
+    def get_available_moves(self):
+        available_moves = []
         for j in range(NUM_COLUMNS):
             if self.board[NUM_ROWS - 1][j] == EMPTY_VAL:
-                availableMoves.append([NUM_ROWS - 1, j])
+                available_moves.append([NUM_ROWS - 1, j])
             else:
                 for i in range(NUM_ROWS - 1):
                     if self.board[i][j] == EMPTY_VAL and self.board[i + 1][j] != EMPTY_VAL:
-                        availableMoves.append([i, j])
-        return availableMoves
+                        available_moves.append([i, j])
+        return available_moves
 
-    def getGameResult(self):
-        winnerFound = False
-        currentWinner = None
+    def get_game_result(self):
+        winner_found = False
+        current_winner = None
         # Find winner on horizontal
         for i in range(NUM_ROWS):
-            if not winnerFound:
+            if not winner_found:
                 for j in range(NUM_COLUMNS - REQUIRED_SEQUENCE - 1):
                     if self.board[i][j] != 0 and self.board[i][j] == self.board[i][j + 1] and self.board[i][j] == \
                             self.board[i][j + 2] and \
                             self.board[i][j] == self.board[i][j + 3]:
-                        currentWinner = self.board[i][j]
-                        winnerFound = True
+                        current_winner = self.board[i][j]
+                        winner_found = True
 
         # Find winner on vertical
-        if not winnerFound:
+        if not winner_found:
             for j in range(NUM_COLUMNS):
-                if not winnerFound:
+                if not winner_found:
                     for i in range(NUM_ROWS - REQUIRED_SEQUENCE - 1):
                         if self.board[i][j] != 0 and self.board[i][j] == self.board[i + 1][j] and self.board[i][j] == \
                                 self.board[i + 2][j] and \
                                 self.board[i][j] == self.board[i + 3][j]:
-                            currentWinner = self.board[i][j]
-                            winnerFound = True
+                            current_winner = self.board[i][j]
+                            winner_found = True
 
         # Check lower left diagonals
-        if not winnerFound:
+        if not winner_found:
             for i in range(NUM_ROWS - REQUIRED_SEQUENCE - 1):
                 j = 0
                 while j <= i:
                     if self.board[i][j] != 0 and self.board[i][i] == self.board[i + 1][j + 1] and self.board[i][i] == \
                             self.board[i + 2][j + 2] and \
                             self.board[i][i] == self.board[i + 3][j + 3]:
-                        currentWinner = self.board[i][j]
-                        winnerFound = True
+                        current_winner = self.board[i][j]
+                        winner_found = True
                     j = j + 1
 
         # Check upper right diagonals
-        if not winnerFound:
+        if not winner_found:
             for j in range(NUM_COLUMNS - REQUIRED_SEQUENCE - 1):
                 i = j
                 while i <= NUM_ROWS - REQUIRED_SEQUENCE - 1:
                     if self.board[i][j] != 0 and self.board[i][i] == self.board[i + 1][j + 1] and self.board[i][i] == \
                             self.board[i + 2][j + 2] and \
                             self.board[i][i] == self.board[i + 3][j + 3]:
-                        currentWinner = self.board[i][j]
-                        winnerFound = True
+                        current_winner = self.board[i][j]
+                        winner_found = True
                     i = i + 1
 
-        if winnerFound:
-            return currentWinner
+        if winner_found:
+            return current_winner
         else:
-            drawFound = True
+            draw_found = True
             # Check for draw
             for i in range(len(self.board)):
                 for j in range(len(self.board[i])):
                     if self.board[i][j] == EMPTY_VAL:
-                        drawFound = False
-            if drawFound:
+                        draw_found = False
+            if draw_found:
                 return GAME_STATE_DRAW
             else:
                 return GAME_STATE_NOT_ENDED
@@ -129,8 +131,8 @@ class Game:
         self.board[move[0]][move[1]] = player
         self.boardHistory.append(copy.deepcopy(self.board))
 
-    def getBoardHistory(self):
+    def get_board_history(self):
         return self.boardHistory
 
-    def getBoard(self):
+    def get_board(self):
         return self.board

@@ -1,21 +1,21 @@
 import numpy as np
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.utils import to_categorical
+from keras.layers import Dense
+from keras.models import Sequential
+from keras.utils.np_utils import to_categorical
 
 
 class ConnectFourModel:
 
-    def __init__(self, numberOfInputs, numberOfOutputs, batchSize, epochs):
-        self.numberOfInputs = numberOfInputs
-        self.numberOfOutputs = numberOfOutputs
-        self.batchSize = batchSize
+    def __init__(self, number_of_inputs, number_of_outputs, batch_size, epochs):
+        self.numberOfInputs = number_of_inputs
+        self.numberOfOutputs = number_of_outputs
+        self.batchSize = batch_size
         self.epochs = epochs
         self.model = Sequential()
-        self.model.add(Dense(42, 'relu', (numberOfInputs,)))
+        self.model.add(Dense(42, 'relu', (number_of_inputs,)))
         self.model.add(Dense(42, 'relu'))
-        self.model.add(Dense(numberOfOutputs, 'softmax'))
-        self.model.compile('categorical_crossentropy', "rmsprop", ['accuracy'])
+        self.model.add(Dense(number_of_outputs, 'softmax'))
+        self.model.compile('rmsprop', 'categorical_crossentropy', ['accuracy'])
 
     def train(self, dataset):
         input = []
@@ -31,7 +31,8 @@ class ConnectFourModel:
         X_test = X[limit:]
         y_train = y[:limit]
         y_test = y[limit:]
-        self.model.fit(X_train, y_train, (X_test, y_test), self.epochs, self.batchSize)
+        # self.model.fit(X_train, y_train, (X_test, y_test), self.epochs, self.batchSize)
+        self.model.fit(X_train, y_train, self.batchSize, self.epochs)
 
     def predict(self, data, index):
         return self.model.predict(np.array(data).reshape(-1, self.numberOfInputs))[0][index]

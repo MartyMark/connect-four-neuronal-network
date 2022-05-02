@@ -14,24 +14,24 @@ if __name__ == "__main__":
 
     gameController = GameController(firstGame, redPlayer, yellowPlayer)
     print("Playing with both players with random strategies")
-    gameController.simulateManyGames(1000)
+    gameController.simulate_many_games(1000)
 
     # 42 inputs
     # 3 outputs
     # 50 batch size
     # 100 epochs
     model = ConnectFourModel(42, 3, 50, 100)
-    model.train(gameController.getTrainingHistory())
+    model.train(gameController.get_training_history())
 
-    #redNeuralPlayer = Player(RED_PLAYER_VAL, 'model', model)
-    #yellowNeuralPlayer = Player(YELLOW_PLAYER_VAL, 'model', model)
+    redNeuralPlayer = Player(RED_PLAYER_VAL, 'model', model)
+    yellowNeuralPlayer = Player(YELLOW_PLAYER_VAL, 'model', model)
 
-    #secondGame = Game()
-    #gameController = GameController(secondGame, redPlayer, yellowNeuralPlayer)
-    #print ("Playing with yellow player as Neural Network")
-    #gameController.simulateManyGames(1000)
+    secondGame = Game()
+    gameController = GameController(secondGame, redPlayer, yellowNeuralPlayer)
+    print("Playing with yellow player as Neural Network")
+    gameController.simulate_many_games(10)
 
-    #thirdGame = Game()
-    #gameController = GameController(thirdGame, redNeuralPlayer, yellowPlayer)
-    #print("Playing with red player as Neural Network")
-    #gameController.simulateManyGames(1000)
+    thirdGame = Game()
+    gameController = GameController(thirdGame, redNeuralPlayer, yellowPlayer)
+    print("Playing with red player as Neural Network")
+    gameController.simulate_many_games(10)

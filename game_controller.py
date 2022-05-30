@@ -35,8 +35,8 @@ class GameController:
         player_to_move = self.redPlayer
         while self.game.get_game_result() == GAME_STATE_NOT_ENDED:
             available_moves = self.game.get_available_moves()
-            move = player_to_move.getMove(available_moves, self.game.get_board())
-            self.game.move(move, player_to_move.getPlayer())
+            move = player_to_move.get_move(available_moves, self.game.get_board())
+            self.game.move(move, player_to_move.get_player())
             if player_to_move == self.redPlayer:
                 player_to_move = self.yellowPlayer
             else:

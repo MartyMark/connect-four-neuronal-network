@@ -15,6 +15,7 @@ class ConnectFourModel:
         self.model.add(Dense(42, 'relu', (number_of_inputs,)))
         self.model.add(Dense(42, 'relu'))
         self.model.add(Dense(number_of_outputs, 'softmax'))
+        # for a multi-class classification problem
         self.model.compile('rmsprop', 'categorical_crossentropy', ['accuracy'])
 
     def train(self, dataset):
@@ -24,15 +25,20 @@ class ConnectFourModel:
             input.append(data[1])
             output.append(data[0])
 
-        X = np.array(input).reshape((-1, self.numberOfInputs))
+        x = np.array(input).reshape((-1, self.numberOfInputs))
         y = to_categorical(output, 3)
-        limit = int(0.8 * len(X))
-        X_train = X[:limit]
-        X_test = X[limit:]
+        limit = int(0.8 * len(x))
+        x_train = x[:limit]
+        x_test = x[limit:]
         y_train = y[:limit]
         y_test = y[limit:]
-        # self.model.fit(X_train, y_train, (X_test, y_test), self.epochs, self.batchSize)
-        self.model.fit(X_train, y_train, self.batchSize, self.epochs)
+        self.model.fit(
+            x=x_train,
+            y=y_train,
+            batch_size=self.batchSize,
+            epochs=self.epochs,
+            validation_data=(x_test, y_test)
+        )
 
     def predict(self, data, index):
         return self.model.predict(np.array(data).reshape(-1, self.numberOfInputs))[0][index]

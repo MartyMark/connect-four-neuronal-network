@@ -12,23 +12,23 @@ class Player:
         self.strategy = strategy
         self.model = model
 
-    def getMove(self, availableMoves, board):
+    def get_move(self, available_moves, board):
         if self.strategy == "random":
-            return availableMoves[random.randrange(0, len(availableMoves))]
+            return available_moves[random.randrange(0, len(available_moves))]
         else:
-            maxValue = 0
-            bestMove = availableMoves[0]
-            for availableMove in availableMoves:
-                boardCopy = copy.deepcopy(board)
-                boardCopy[availableMove[0]][availableMove[1]] = self.value
+            max_value = 0
+            best_move = available_moves[0]
+            for availableMove in available_moves:
+                board_copy = copy.deepcopy(board)
+                board_copy[availableMove[0]][availableMove[1]] = self.value
                 if self.value == RED_PLAYER_VAL:
-                    value = self.model.predict(boardCopy, 2)
+                    value = self.model.predict(board_copy, 2)
                 else:
-                    value = self.model.predict(boardCopy, 0)
-                if value > maxValue:
-                    maxValue = value
-                    bestMove = availableMove
-            return bestMove
+                    value = self.model.predict(board_copy, 0)
+                if value > max_value:
+                    max_value = value
+                    best_move = availableMove
+            return best_move
 
-    def getPlayer(self):
+    def get_player(self):
         return self.value

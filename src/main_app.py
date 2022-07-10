@@ -6,7 +6,6 @@ from game import Game
 from player import Player
 from game_controller import GameController
 from model import ConnectFourModel
-from http_client import get, post, put
 
 RED_PLAYER_VAL = -1
 YELLOW_PLAYER_VAL = 1

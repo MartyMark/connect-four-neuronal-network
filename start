@@ -4,7 +4,7 @@ set -e
 
 cd "${BASH_SOURCE%/*}" || exit
 
-export FLASK_APP=main_app.py
+export FLASK_APP=src/main_app.py
 
 flask run --host=0.0.0.0
 

@@ -30,10 +30,16 @@ Schnittstelle dir adressiert wird, und sich alle Spiele aus der Blockchain zu ho
 
 
 
-**Getting Started**
+###Getting Started
 
-1. Terminal -> ./start 
+**Service starten**
 
-2. Postman
+    Terminal -> ./start 
 
-![img.png](img.png)
+Postman
+
+![img.png](doc/postman_predict_post.png)
+
+**Training durchführen** 
+
+    Terminal -> python3 src/train_command.py

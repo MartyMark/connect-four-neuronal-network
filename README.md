@@ -23,11 +23,6 @@ Schnittstelle dir adressiert wird, und sich alle Spiele aus der Blockchain zu ho
 - [ ] Dann *move* im *game* = Player im Board hinterlegen und auf die Blockchain packen.
 
 
-**3. Model speichern**
-
-- [ ] Trainingsmodel bzw Gewichte speichern
-
-
 
 
 ###Getting Started
@@ -40,6 +35,10 @@ Postman
 
 ![img.png](doc/postman_predict_post.png)
 
-**Training durchführen** 
+**Model trainieren** 
 
     Terminal -> python3 src/train_command.py
+
+**Model testen** 
+
+    Terminal -> python3 src/test_command.py

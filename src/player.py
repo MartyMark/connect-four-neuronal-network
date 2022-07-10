@@ -1,8 +1,7 @@
 import random
 import copy
 
-RED_PLAYER_VAL = -1
-YELLOW_PLAYER_VAL = 1
+from game import RED_PLAYER_VAL
 
 
 class Player:

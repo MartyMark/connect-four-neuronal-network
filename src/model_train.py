@@ -2,9 +2,10 @@ import numpy as np
 from keras.layers import Dense
 from keras.models import Sequential
 from keras.utils.np_utils import to_categorical
+from tensorflow import keras
 
 
-class ConnectFourModel:
+class ConnectFourModelTrain:
 
     def __init__(self, number_of_inputs, number_of_outputs, batch_size, epochs):
         self.numberOfInputs = number_of_inputs
@@ -42,3 +43,9 @@ class ConnectFourModel:
 
     def predict(self, data, index):
         return self.model.predict(np.array(data).reshape(-1, self.numberOfInputs))[0][index]
+
+    def save(self):
+        self.model.save('nn_model')
+
+    def load(self):
+        self.model = keras.models.load_model('nn_model')

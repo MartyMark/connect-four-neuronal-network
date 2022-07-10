@@ -1,8 +1,6 @@
 import copy
 
-RED_PLAYER_VAL = -1
-YELLOW_PLAYER_VAL = 1
-GAME_STATE_NOT_ENDED = 2
+from game import RED_PLAYER_VAL, YELLOW_PLAYER_VAL, GAME_STATE_NOT_ENDED
 
 
 class GameController:

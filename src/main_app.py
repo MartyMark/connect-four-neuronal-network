@@ -2,6 +2,8 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 
+from src.train_command import train
+
 app = Flask(__name__)
 
 
@@ -14,6 +16,8 @@ def predict():
     }
     return jsonify(response)
 
+
+train()
 
 """
 if __name__ == "__main__":

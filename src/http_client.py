@@ -2,10 +2,7 @@ import requests
 
 
 def get(url, query=None):
-    response = requests.get(url, params=query)
-
-    print(response.text)
-    print(response.content)
+    return requests.get(url, params=query)
 
 
 def post(url, data):

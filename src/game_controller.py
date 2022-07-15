@@ -1,6 +1,7 @@
 import copy
 
-from game import RED_PLAYER_VAL, YELLOW_PLAYER_VAL, GAME_STATE_NOT_ENDED, get_available_moves
+from game import RED_PLAYER_VAL, YELLOW_PLAYER_VAL, GAME_STATE_NOT_ENDED
+from operation_util import get_available_moves
 
 
 class GameController:

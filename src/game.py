@@ -1,4 +1,3 @@
-import os
 import copy
 
 RED_PLAYER = 'R'
@@ -18,18 +17,6 @@ NUM_COLUMNS = 7
 REQUIRED_SEQUENCE = 4
 
 
-def get_available_moves(board):
-    available_moves = []
-    for j in range(NUM_COLUMNS):
-        if board[NUM_ROWS - 1][j] == EMPTY_VAL:
-            available_moves.append([NUM_ROWS - 1, j])
-        else:
-            for i in range(NUM_ROWS - 1):
-                if board[i][j] == EMPTY_VAL and board[i + 1][j] != EMPTY_VAL:
-                    available_moves.append([i, j])
-    return available_moves
-
-
 class Game:
 
     def __init__(self):
@@ -47,24 +34,6 @@ class Game:
             [EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL]
         ]
         self.boardHistory = []
-
-    def print_board(self):
-        for i in range(len(self.board)):
-            for j in range(len(self.board[i])):
-                print(VERTICAL_SEPARATOR, '')
-            print(os.linesep)
-            for j in range(len(self.board[i])):
-                if RED_PLAYER_VAL == self.board[i][j]:
-                    print(RED_PLAYER, '')
-                elif YELLOW_PLAYER_VAL == self.board[i][j]:
-                    print(YELLOW_PLAYER, '')
-                elif EMPTY_VAL == self.board[i][j]:
-                    print(EMPTY, '')
-                print(HORIZONTAL_SEPARATOR, '')
-            print(os.linesep)
-            for j in range(len(self.board[i])):
-                print(VERTICAL_SEPARATOR, '')
-        print(os.linesep)
 
     def get_game_result(self):
         winner_found = False

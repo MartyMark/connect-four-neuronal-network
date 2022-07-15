@@ -1,10 +1,13 @@
+import ast
 import copy
 
 from flask import Flask
 from flask import request
 
-from game import NUM_COLUMNS, EMPTY_VAL, NUM_ROWS, RED_PLAYER_VAL, Game, get_available_moves
+from game import RED_PLAYER_VAL
 from model_load import ConnectFourModelLoad
+from player import Player
+from operation_util import get_available_moves
 
 app = Flask(__name__)
 
@@ -33,15 +36,16 @@ def get_move(board, player):
 def predict():
     message = request.get_json(force=True)
     board = message['board']
-    player = message['player']
+    player_value = int(message['player'])
 
-    first_game = Game()
+    board = ast.literal_eval(board)
 
-    print(board)
-    print(player)
+    player = Player(player_value, 'model', model)
 
-    best_move = get_move(board, player)
+    available_moves = get_available_moves(board)
 
-    board[best_move[0]][best_move[1]] = player
+    best_move = player.get_move(available_moves, board)
 
-    return board
+    board[best_move[0]][best_move[1]] = player_value
+
+    return {"x": best_move[0], "y": best_move[1]}

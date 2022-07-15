@@ -1,18 +1,19 @@
 # connect-four-neuronal-network
 
-TODO:
+TO-DO:
 
-###Schnittstellen:
+- Wenn Ki spielt → Spiele aufnehmen zum Lernen
+- Schnittstelle testen
+- Refactorn / Zentralisieren
+
+###Schnittstelle:
 
 **Zug vorhersagen**
 
-- [x] Flusk als Web-Framework implementieren
-- [ ] *get_available_moves*, die das Board als Parameter erhält
-- [ ] *get_move* beim *Player* aufrufen mit → möglichen Zügen *available_moves* & dem aktuellen Board. Dort wird dann der beste Zug predictet.
-- [ ] Dann *move* im *game* = Player im Board hinterlegen und auf die Blockchain packen.
+TO-DO: Doku → Wie wird Schnittstelle benutzt
 
-
-
+- Datensatz sieht wie folgt aus: [(1,[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,-1]]), (1,[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[1,0,0,0,0,0,-1]])]
+- Ein Array aus Tupel → Jedes Tupel besteht, dem Wert (links) der gewonnen hat, und dem Board zu dem Spielzug (rechts)
 
 ###Getting Started
 

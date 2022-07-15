@@ -53,12 +53,3 @@ def predict():
     board[best_move[0]][best_move[1]] = player
 
     return board
-
-
-"""
-if __name__ == "__main__":
-    get('http://api.open-notify.org/iss-pass.json', {'lat': '45', 'lon': '180'})
-
-    post('https://httpbin.org/post', data={'key': 'value'})
-
-    #put('https://httpbin.org/put', data={'key': 'value'})"""

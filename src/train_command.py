@@ -12,7 +12,7 @@ def train():
 
     game_controller = GameController(first_game, red_player, yellow_player)
     print(" * Playing with both players with random strategies")
-    game_controller.simulate_many_games(500)
+    game_controller.simulate_many_games(1)
 
     trainingdata = []
 
@@ -33,8 +33,8 @@ def train():
     # 50 batch size
     # 100 epochs
     model = ConnectFourModelTrain(42, 3, 50, 100)
-    #model.train(trainingdata)
-    model.train(game_controller.get_training_history())
+    model.train(trainingdata)
+    #model.train(game_controller.get_training_history())
     model.save()
 
 

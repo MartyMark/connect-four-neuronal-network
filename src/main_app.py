@@ -2,26 +2,13 @@ import copy
 
 from flask import Flask
 from flask import request
-from flask import jsonify
 
-from game import NUM_COLUMNS, EMPTY_VAL, NUM_ROWS, RED_PLAYER_VAL
+from game import NUM_COLUMNS, EMPTY_VAL, NUM_ROWS, RED_PLAYER_VAL, Game, get_available_moves
 from model_load import ConnectFourModelLoad
 
 app = Flask(__name__)
 
 model = ConnectFourModelLoad(42)
-
-
-def get_available_moves(board):
-    available_moves = []
-    for j in range(NUM_COLUMNS):
-        if board[NUM_ROWS - 1][j] == EMPTY_VAL:
-            available_moves.append([NUM_ROWS - 1, j])
-        else:
-            for i in range(NUM_ROWS - 1):
-                if board[i][j] == EMPTY_VAL and board[i + 1][j] != EMPTY_VAL:
-                    available_moves.append([i, j])
-    return available_moves
 
 
 def get_move(board, player):
@@ -47,6 +34,11 @@ def predict():
     message = request.get_json(force=True)
     board = message['board']
     player = message['player']
+
+    first_game = Game()
+
+    print(board)
+    print(player)
 
     best_move = get_move(board, player)
 

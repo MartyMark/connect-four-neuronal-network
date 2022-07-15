@@ -1,3 +1,5 @@
+import ast
+
 from model_train import ConnectFourModelTrain
 import csv
 
@@ -10,10 +12,7 @@ def train():
 
         for row in reader:
 
-            board = []
-
-            for i in range(1, 7):
-                board.append(list(map(int, row[i].split(','))))
+            board = ast.literal_eval(row[1])
 
             trainingdata.append((int(row[0]), board))
 

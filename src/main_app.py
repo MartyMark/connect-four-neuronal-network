@@ -25,6 +25,4 @@ def predict():
 
     best_move = player.get_move(board)
 
-    board[best_move[0]][best_move[1]] = player_value
-
     return {"x": best_move[0], "y": best_move[1]}

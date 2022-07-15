@@ -2,6 +2,7 @@ import random
 import copy
 
 from game import RED_PLAYER_VAL
+from operation_util import get_available_moves
 
 
 class Player:
@@ -11,7 +12,9 @@ class Player:
         self.strategy = strategy
         self.model = model
 
-    def get_move(self, available_moves, board):
+    def get_move(self, board):
+        available_moves = get_available_moves(board)
+
         if self.strategy == "random":
             return available_moves[random.randrange(0, len(available_moves))]
         else:

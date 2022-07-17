@@ -1,3 +1,5 @@
+import math
+
 from game import NUM_ROWS, EMPTY_VAL, NUM_COLUMNS
 
 
@@ -11,3 +13,8 @@ def get_available_moves(board):
                 if board[i][j] == EMPTY_VAL and board[i + 1][j] != EMPTY_VAL:
                     available_moves.append([i, j])
     return available_moves
+
+
+def round_half_up(n, decimals=0):
+    multiplier = 10 ** decimals
+    return math.floor(n * multiplier + 0.5) / multiplier

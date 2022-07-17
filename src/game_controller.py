@@ -1,7 +1,7 @@
-import copy
+import csv
 
 from game import RED_PLAYER_VAL, YELLOW_PLAYER_VAL, GAME_STATE_NOT_ENDED
-from operation_util import get_available_moves
+from operation_util import round_half_up
 
 
 class GameController:
@@ -25,6 +25,20 @@ class GameController:
                 yellow_player_wins = yellow_player_wins + 1
             else:
                 draws = draws + 1
+
+        with open('src/trainingdata.csv', 'a', newline='') as f:
+            writer = csv.writer(f, delimiter=';')
+
+            last_twenty_percentage = len(self.trainingHistory) / 100 * 20
+            last_twenty_percentage = int(round_half_up(last_twenty_percentage))
+
+            for boardHistory in self.trainingHistory[-last_twenty_percentage:]:
+                winner = boardHistory[0]
+                boards = boardHistory[1]
+
+                for board in boards:
+                    writer.writerow([winner, board])
+
         total_wins = red_player_wins + yellow_player_wins + draws
         print('Red Wins: ' + str(int(red_player_wins * 100 / total_wins)) + '%')
         print('Yellow Wins: ' + str(int(yellow_player_wins * 100 / total_wins)) + '%')
@@ -40,8 +54,7 @@ class GameController:
             else:
                 player_to_move = self.redPlayer
 
-        for historyItem in self.game.get_board_history():
-            self.trainingHistory.append((self.game.get_game_result(), copy.deepcopy(historyItem)))
+        self.trainingHistory.append((self.game.get_game_result(), self.game.get_board_history()))
 
     def get_training_history(self):
         return self.trainingHistory

@@ -1,34 +1,48 @@
 # connect-four-neuronal-network
-
-TO-DO:
-
-- Wenn Ki spielt → Spiele aufnehmen zum Lernen 20 % der Spiele
-- Schnittstellendoku
-- In AWS Deployen und Continues Integration
-- lint
-- tests schreiben
-
+###
 ###Getting Started
 
 **Service starten**
 
     Terminal -> ./start 
+###
+**Zug vorhersagen**
 
-Postman
+***Request***
 
-![img.png](doc/postman_predict_post.png)
+![img.png](doc/predict_post.png)
 
-**Model trainieren** 
+Datensatz sieht wie folgt aus:
+    
+    player: 1
+    board: [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,-1]]), (1,[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[1,0,0,0,0,0,-1]]
 
-    Terminal -> python3 src/train_command.py
+- Der Spieler wird als Integer `1` oder `-1` angegeben.
+- Das Board wird als mehrdimensionales Array angegeben. Die `0` steht für ein unbesetztes Feld.
 
+***Response***
+
+![img.png](doc/response.png)
+
+Als Rückgabe wird mit `x` der Index der Reihe und mit `y` der Index der Spalte angegeben. 
+Bei dem dann der Spielerwert, der als `player` mitgegeben wurde, (`1` oder `-1`) eingetragen werden kann.
+
+###
+**Model trainieren**
+
+Um das Model zu trainieren, muss folgender Befehl in der Konsole ausgeführt werden:
+
+    python3 src/train_command.py
+
+Dabei werden die Daten aus der `trainingsdata.csv` verwendet. Nach Beendigung des Trainings wird das 
+alte Model mit dem neuen ersetzt. Das Model befindet sich in dem Ordner `src/nn_model`.
+
+###
 **Model testen** 
+
+Um das Model zu testen, muss folgender Befehl in der Konsole ausgeführt werden:
 
     Terminal -> python3 src/test_command.py
 
-###Schnittstellen:
+Nach Durchführung der Testspiele werden die Boards der letzten 20 % der Spiele in die `trainingsdata.csv` geschrieben.
 
-**Zug vorhersagen**
-
-- Datensatz sieht wie folgt aus: [(1,[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,-1]]), (1,[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[1,0,0,0,0,0,-1]])]
-- Ein Array aus Tupel → Jedes Tupel besteht, dem Wert (links) der gewonnen hat, und dem Board zu dem Spielzug (rechts)

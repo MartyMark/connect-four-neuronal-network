@@ -3,7 +3,9 @@
 
 **Service starten**
 
-    Terminal -> ./start 
+Um den Serice zu starten, muss folgender Befehl in der Konsole ausgeführt werden:
+
+    ./start 
 ###
 **Zug vorhersagen**
 

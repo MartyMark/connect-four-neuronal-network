@@ -1,6 +1,5 @@
 # connect-four-neuronal-network
 ###
-###Getting Started
 
 **Service starten**
 

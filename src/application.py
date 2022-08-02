@@ -26,3 +26,7 @@ def predict():
     best_move = player.get_move(board)
 
     return {"x": best_move[0], "y": best_move[1]}
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)

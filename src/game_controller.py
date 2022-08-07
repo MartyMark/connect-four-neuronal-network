@@ -1,7 +1,6 @@
 import csv
 
 from game import RED_PLAYER_VAL, YELLOW_PLAYER_VAL, GAME_STATE_NOT_ENDED
-from operation_util import round_half_up
 
 
 class GameController:
@@ -29,10 +28,7 @@ class GameController:
         with open('src/trainingdata.csv', 'a', newline='') as f:
             writer = csv.writer(f, delimiter=';')
 
-            last_twenty_percentage = len(self.trainingHistory) / 100 * 20
-            last_twenty_percentage = int(round_half_up(last_twenty_percentage))
-
-            for boardHistory in self.trainingHistory[-last_twenty_percentage:]:
+            for boardHistory in self.trainingHistory:
                 winner = boardHistory[0]
                 boards = boardHistory[1]
 

@@ -1,12 +1,10 @@
 import ast
-import copy
 
 from flask import Flask
 from flask import request
 
 from model_load import ConnectFourModelLoad
 from player import Player
-from operation_util import get_available_moves
 
 app = Flask(__name__)
 

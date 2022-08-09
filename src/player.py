@@ -14,7 +14,7 @@ class Player:
         self.value = value
         self.strategy = strategy
         self.model = model
-        self.e_greedy = 0.4
+        self.e_greedy = 0.3
 
     # [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]
     def get_move(self, board):

@@ -7,9 +7,9 @@ class GameController:
 
     def __init__(self, game, red_player, yellow_player):
         self.game = game
-        self.redPlayer = red_player
-        self.yellowPlayer = yellow_player
-        self.trainingHistory = []
+        self.red_player = red_player
+        self.yellow_player = yellow_player
+        self.training_history = []
 
     def simulate_many_games(self, number_of_games):
         red_player_wins = 0
@@ -25,12 +25,12 @@ class GameController:
             else:
                 draws = draws + 1
 
-        with open('src/trainingdata.csv', 'a', newline='') as f:
-            writer = csv.writer(f, delimiter=';')
+        with open('src/trainingdata.csv', 'a', encoding="UTF-8", newline='') as file:
+            writer = csv.writer(file, delimiter=';')
 
-            for boardHistory in self.trainingHistory:
-                winner = boardHistory[0]
-                boards = boardHistory[1]
+            for board_history in self.training_history:
+                winner = board_history[0]
+                boards = board_history[1]
 
                 for board in boards:
                     writer.writerow([winner, board])
@@ -41,16 +41,16 @@ class GameController:
         print('Draws: ' + str(int(draws * 100 / total_wins)) + '%')
 
     def play_game(self):
-        player_to_move = self.redPlayer
+        player_to_move = self.red_player
         while self.game.get_game_result() == GAME_STATE_NOT_ENDED:
             move = player_to_move.get_move(self.game.get_board())
             self.game.move(move, player_to_move.get_player())
-            if player_to_move == self.redPlayer:
-                player_to_move = self.yellowPlayer
+            if player_to_move == self.red_player:
+                player_to_move = self.yellow_player
             else:
-                player_to_move = self.redPlayer
+                player_to_move = self.red_player
 
-        self.trainingHistory.append((self.game.get_game_result(), self.game.get_board_history()))
+        self.training_history.append((self.game.get_game_result(), self.game.get_board_history()))
 
     def get_training_history(self):
-        return self.trainingHistory
+        return self.training_history

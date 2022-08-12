@@ -42,7 +42,8 @@ class Game:
         for i in range(NUM_ROWS):
             if not winner_found:
                 for j in range(NUM_COLUMNS - REQUIRED_SEQUENCE - 1):
-                    if self.board[i][j] != 0 and self.board[i][j] == self.board[i][j + 1] and self.board[i][j] == \
+                    if self.board[i][j] != 0 and self.board[i][j] == self.board[i][j + 1] \
+                        and self.board[i][j] == \
                             self.board[i][j + 2] and \
                             self.board[i][j] == self.board[i][j + 3]:
                         current_winner = self.board[i][j]
@@ -53,7 +54,8 @@ class Game:
             for j in range(NUM_COLUMNS):
                 if not winner_found:
                     for i in range(NUM_ROWS - REQUIRED_SEQUENCE - 1):
-                        if self.board[i][j] != 0 and self.board[i][j] == self.board[i + 1][j] and self.board[i][j] == \
+                        if self.board[i][j] != 0 and self.board[i][j] == self.board[i + 1][j] \
+                            and self.board[i][j] == \
                                 self.board[i + 2][j] and \
                                 self.board[i][j] == self.board[i + 3][j]:
                             current_winner = self.board[i][j]
@@ -64,7 +66,8 @@ class Game:
             for i in range(NUM_ROWS - REQUIRED_SEQUENCE - 1):
                 j = 0
                 while j <= i:
-                    if self.board[i][j] != 0 and self.board[i][i] == self.board[i + 1][j + 1] and self.board[i][i] == \
+                    if self.board[i][j] != 0 and self.board[i][i] == self.board[i + 1][j + 1] \
+                        and self.board[i][i] == \
                             self.board[i + 2][j + 2] and \
                             self.board[i][i] == self.board[i + 3][j + 3]:
                         current_winner = self.board[i][j]
@@ -76,7 +79,8 @@ class Game:
             for j in range(NUM_COLUMNS - REQUIRED_SEQUENCE - 1):
                 i = j
                 while i <= NUM_ROWS - REQUIRED_SEQUENCE - 1:
-                    if self.board[i][j] != 0 and self.board[i][i] == self.board[i + 1][j + 1] and self.board[i][i] == \
+                    if self.board[i][j] != 0 and self.board[i][i] == self.board[i + 1][j + 1] \
+                        and self.board[i][i] == \
                             self.board[i + 2][j + 2] and \
                             self.board[i][i] == self.board[i + 3][j + 3]:
                         current_winner = self.board[i][j]

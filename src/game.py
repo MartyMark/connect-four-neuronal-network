@@ -1,3 +1,6 @@
+"""
+This Module holds the Game Class.
+"""
 import copy
 
 RED_PLAYER = 'R'
@@ -18,13 +21,15 @@ REQUIRED_SEQUENCE = 4
 
 
 class Game:
-
+    """This Class holds all neccessary Methods to manage a Connect 4 Game"""
     def __init__(self):
+        """Init function of the Game Class"""
         self.board = []
         self.board_history = []
         self.reset_board()
 
     def reset_board(self):
+        """Emptys all Rows and Cols of the Gameboard."""
         self.board = [
             [EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL],
             [EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL],
@@ -36,6 +41,10 @@ class Game:
         self.board_history = []
 
     def get_game_result(self):
+        """
+        Check the Gameboard if a winner is found and returns the winner.
+        If no winner is found return the Game State.
+        """
         winner_found = False
         current_winner = None
         # Find winner on horizontal
@@ -102,11 +111,14 @@ class Game:
                 return GAME_STATE_NOT_ENDED
 
     def move(self, move, player):
+        """Sets the move of the Player and saves it to the board_history."""
         self.board[move[0]][move[1]] = player
         self.board_history.append(copy.deepcopy(self.board))
 
     def get_board_history(self):
+        """Return the board_history."""
         return self.board_history
 
     def get_board(self):
+        """Returns the current board."""
         return self.board

@@ -1,14 +1,18 @@
+"""
+This Module holds the Method to train the Neural Network Model.
+"""
 import ast
-
-from model_train import ConnectFourModelTrain
 import csv
+from model_train import ConnectFourModelTrain
+
 
 
 def train():
+    """Trains the Neural Network Model with the Dataset from the CSV File."""
     trainingdata = []
 
-    with open('src/trainingdata.csv', 'r', newline='') as f:
-        reader = csv.reader(f, delimiter=';')
+    with open('src/trainingdata.csv', 'r', encoding="UTF-8", newline='') as file:
+        reader = csv.reader(file, delimiter=';')
 
         for row in reader:
 

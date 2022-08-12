@@ -21,7 +21,7 @@ class Game:
 
     def __init__(self):
         self.board = []
-        self.boardHistory = []
+        self.board_history = []
         self.reset_board()
 
     def reset_board(self):
@@ -33,7 +33,7 @@ class Game:
             [EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL],
             [EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL, EMPTY_VAL]
         ]
-        self.boardHistory = []
+        self.board_history = []
 
     def get_game_result(self):
         winner_found = False
@@ -103,10 +103,10 @@ class Game:
 
     def move(self, move, player):
         self.board[move[0]][move[1]] = player
-        self.boardHistory.append(copy.deepcopy(self.board))
+        self.board_history.append(copy.deepcopy(self.board))
 
     def get_board_history(self):
-        return self.boardHistory
+        return self.board_history
 
     def get_board(self):
         return self.board

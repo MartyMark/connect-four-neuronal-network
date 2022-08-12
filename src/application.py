@@ -1,3 +1,6 @@
+"""
+This Module holds alle API Routes and their Methods.
+"""
 import ast
 
 from flask import Flask
@@ -13,6 +16,7 @@ model = ConnectFourModelLoad(42)
 
 @app.route("/predict", methods=['POST'])
 def predict():
+    """Returns the next move of the Neural Network."""
     message = request.get_json(force=True)
     board = message['board']
     player_value = int(message['player'])

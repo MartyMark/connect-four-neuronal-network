@@ -1,17 +1,22 @@
+"""
+This Module holds all the GameController Class.
+"""
 import csv
 
 from game import RED_PLAYER_VAL, YELLOW_PLAYER_VAL, GAME_STATE_NOT_ENDED
 
 
 class GameController:
-
+    """This Class holds all neccessary Methods for managing one game."""
     def __init__(self, game, red_player, yellow_player):
+        """Init function of the GameController Class."""
         self.game = game
         self.red_player = red_player
         self.yellow_player = yellow_player
         self.training_history = []
 
     def simulate_many_games(self, number_of_games):
+        """Simulates a game number_of_games times."""
         red_player_wins = 0
         yellow_player_wins = 0
         draws = 0
@@ -41,6 +46,7 @@ class GameController:
         print('Draws: ' + str(int(draws * 100 / total_wins)) + '%')
 
     def play_game(self):
+        """Sets the move of the current Player."""
         player_to_move = self.red_player
         while self.game.get_game_result() == GAME_STATE_NOT_ENDED:
             move = player_to_move.get_move(self.game.get_board())
@@ -53,4 +59,5 @@ class GameController:
         self.training_history.append((self.game.get_game_result(), self.game.get_board_history()))
 
     def get_training_history(self):
+        """Returns Training History."""
         return self.training_history

@@ -1,3 +1,6 @@
+"""
+This Module holds the test function which tests the Neural Network Model.
+"""
 from game import Game, RED_PLAYER_VAL, YELLOW_PLAYER_VAL
 from player import Player
 from game_controller import GameController
@@ -5,6 +8,7 @@ from model_load import ConnectFourModelLoad
 
 
 def test():
+    """Tests the Neural Network Model."""
     red_player = Player(RED_PLAYER_VAL, 'random')
     yellow_player = Player(YELLOW_PLAYER_VAL, 'random')
 

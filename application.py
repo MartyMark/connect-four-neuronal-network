@@ -6,8 +6,8 @@ import ast
 from flask import Flask
 from flask import request
 
-from model_load import ConnectFourModelLoad
-from player import Player
+from src.model_load import ConnectFourModelLoad
+from src.player import Player
 
 app = Flask(__name__)
 

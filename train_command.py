@@ -3,8 +3,7 @@ This Module holds the Method to train the Neural Network Model.
 """
 import ast
 import csv
-from model_train import ConnectFourModelTrain
-
+from src.model_train import ConnectFourModelTrain
 
 
 def train():
@@ -15,7 +14,6 @@ def train():
         reader = csv.reader(file, delimiter=';')
 
         for row in reader:
-
             board = ast.literal_eval(row[1])
 
             trainingdata.append((int(row[0]), board))

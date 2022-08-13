@@ -33,17 +33,17 @@ Bei dem dann der Spielerwert, der als `player` mitgegeben wurde, (`1` oder `-1`)
 
 Um das Model zu trainieren, muss folgender Befehl in der Konsole ausgeführt werden:
 
-    python3 src/train_command.py
+    python3 train_command.py
 
 Dabei werden die Daten aus der `trainingsdata.csv` verwendet. Nach Beendigung des Trainings wird das 
-alte Model mit dem neuen ersetzt. Das Model befindet sich in dem Ordner `src/nn_model`.
+alte Model mit dem neuen ersetzt. Das Model befindet sich in dem Ordner `nn_model`.
 
 ###
 **Model testen** 
 
 Um das Model zu testen, muss folgender Befehl in der Konsole ausgeführt werden:
 
-    python3 src/test_command.py
+    python3 test_command.py
 
 Nach Durchführung der Testspiele werden die Boards der letzten 20 % der Spiele in die `trainingsdata.csv` geschrieben.
 

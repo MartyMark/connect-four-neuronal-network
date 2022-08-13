@@ -3,7 +3,7 @@ This Module holds helper functions.
 """
 import math
 
-from game import NUM_ROWS, EMPTY_VAL, NUM_COLUMNS
+from src.game import NUM_ROWS, EMPTY_VAL, NUM_COLUMNS
 
 
 def get_available_moves(board):

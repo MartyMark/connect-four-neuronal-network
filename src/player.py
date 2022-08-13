@@ -5,10 +5,10 @@ import math
 import random
 import copy
 import numpy as np
-from min_max import MinMaxAlgorithm
+from src.min_max import MinMaxAlgorithm
 
-from game import RED_PLAYER_VAL
-from operation_util import get_available_moves
+from src.game import RED_PLAYER_VAL
+from src.operation_util import get_available_moves
 
 
 class Player:

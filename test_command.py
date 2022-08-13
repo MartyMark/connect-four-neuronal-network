@@ -1,10 +1,10 @@
 """
 This Module holds the test function which tests the Neural Network Model.
 """
-from game import Game, RED_PLAYER_VAL, YELLOW_PLAYER_VAL
-from player import Player
-from game_controller import GameController
-from model_load import ConnectFourModelLoad
+from src.game import Game, RED_PLAYER_VAL, YELLOW_PLAYER_VAL
+from src.player import Player
+from src.game_controller import GameController
+from src.model_load import ConnectFourModelLoad
 
 
 def test():

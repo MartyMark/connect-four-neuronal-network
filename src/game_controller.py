@@ -3,7 +3,7 @@ This Module holds all the GameController Class.
 """
 import csv
 
-from game import RED_PLAYER_VAL, YELLOW_PLAYER_VAL, GAME_STATE_NOT_ENDED
+from src.game import RED_PLAYER_VAL, YELLOW_PLAYER_VAL, GAME_STATE_NOT_ENDED
 
 
 class GameController:

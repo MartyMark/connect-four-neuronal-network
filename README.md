@@ -43,7 +43,7 @@ alte Model mit dem neuen ersetzt. Das Model befindet sich in dem Ordner `src/nn_
 
 Um das Model zu testen, muss folgender Befehl in der Konsole ausgeführt werden:
 
-    Terminal -> python3 src/test_command.py
+    python3 src/test_command.py
 
 Nach Durchführung der Testspiele werden die Boards der letzten 20 % der Spiele in die `trainingsdata.csv` geschrieben.
 

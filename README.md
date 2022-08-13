@@ -3,7 +3,7 @@
 
 **Service starten**
 
-Um den Serice zu starten, muss folgender Befehl in der Konsole ausgeführt werden:
+Um den Service zu starten, muss folgender Befehl in der Konsole ausgeführt werden:
 
     ./start 
 ###
@@ -31,7 +31,7 @@ Bei dem dann der Spielerwert, der als `player` mitgegeben wurde, (`1` oder `-1`)
 ###
 **Model trainieren**
 
-Um das Model zu trainieren, muss folgender Befehl in der Konsole ausgeführt werden:
+Um das Model zu trainieren, muss folgender Befehl Rootverzeichnis des Projekts ausgeführt werden:
 
     python3 train_command.py
 
@@ -41,9 +41,17 @@ alte Model mit dem neuen ersetzt. Das Model befindet sich in dem Ordner `nn_mode
 ###
 **Model testen** 
 
-Um das Model zu testen, muss folgender Befehl in der Konsole ausgeführt werden:
+Um das Model zu testen, muss folgender Befehl Rootverzeichnis des Projekts ausgeführt werden:
 
     python3 test_command.py
 
 Nach Durchführung der Testspiele werden die Boards der letzten 20 % der Spiele in die `trainingsdata.csv` geschrieben.
+
+###
+**Test ausführen**
+
+Um die Tests auszuführen, muss folgender Befehl im Rootverzeichnis des Projekts ausgeführt werden:
+
+    python -m pytest tests
+
 

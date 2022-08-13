@@ -3,13 +3,13 @@ This Module holds alle API Routes and their Methods.
 """
 import ast
 
-from flask import Flask
 from flask import request
 
+from src import create_app
 from src.model_load import ConnectFourModelLoad
 from src.player import Player
 
-app = Flask(__name__)
+app = create_app()
 
 model = ConnectFourModelLoad(42)
 
@@ -28,6 +28,11 @@ def predict():
     best_move = player.get_move(board)
 
     return {"x": best_move[0], "y": best_move[1]}
+
+
+@app.route("/")
+def test():
+    return "hey"
 
 
 if __name__ == '__main__':

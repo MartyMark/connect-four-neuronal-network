@@ -8,6 +8,7 @@ from src.game import RED_PLAYER_VAL, YELLOW_PLAYER_VAL, GAME_STATE_NOT_ENDED
 
 class GameController:
     """This Class holds all neccessary Methods for managing one game."""
+
     def __init__(self, game, red_player, yellow_player):
         """Init function of the GameController Class."""
         self.game = game
@@ -15,7 +16,7 @@ class GameController:
         self.yellow_player = yellow_player
         self.training_history = []
 
-    def simulate_many_games(self, number_of_games):
+    def simulate_many_games(self, number_of_games, mode='test'):
         """Simulates a game number_of_games times."""
         red_player_wins = 0
         yellow_player_wins = 0
@@ -38,7 +39,8 @@ class GameController:
                 boards = board_history[1]
 
                 for board in boards:
-                    writer.writerow([winner, board])
+                    if mode == 'train':
+                        writer.writerow([winner, board])
 
         total_wins = red_player_wins + yellow_player_wins + draws
         print('Red Wins: ' + str(int(red_player_wins * 100 / total_wins)) + '%')

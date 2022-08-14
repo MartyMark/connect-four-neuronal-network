@@ -7,12 +7,13 @@ import copy
 import numpy as np
 from src.min_max import MinMaxAlgorithm
 
-from src.game import RED_PLAYER_VAL
+from src.game import RED_PLAYER_VAL, YELLOW_PLAYER_VAL
 from src.operation_util import get_available_moves
 
 
 class Player:
     """This Class holds all neccessary Methods for a Player."""
+
     def __init__(self, value, strategy='random', model=None):
         self.value = value
         self.strategy = strategy
@@ -32,7 +33,7 @@ class Player:
             np_board = np.array(board, dtype=np.float64)
             np_board = np.flipud(np_board)
 
-            min_max = MinMaxAlgorithm()
+            min_max = MinMaxAlgorithm(self.get_other_player(), self.get_player())
 
             col, minimax_score = min_max.minimax(np_board, 5, -math.inf, math.inf, True)
 
@@ -62,3 +63,9 @@ class Player:
     def get_player(self):
         """Returns the current player."""
         return self.value
+
+    def get_other_player(self):
+        if self.value == RED_PLAYER_VAL:
+            return YELLOW_PLAYER_VAL
+        else:
+            return RED_PLAYER_VAL

@@ -5,7 +5,6 @@ import numpy as np
 from keras.layers import Dense
 from keras.models import Sequential
 from keras.utils.np_utils import to_categorical
-from tensorflow import keras
 
 
 class ConnectFourModelTrain:
@@ -52,7 +51,3 @@ class ConnectFourModelTrain:
     def save(self):
         """Saves the Neural Network Model."""
         self.model.save('nn_model')
-
-    def load(self):
-        """Loads the Neural Network Model."""
-        self.model = keras.models.load_model('nn_model')

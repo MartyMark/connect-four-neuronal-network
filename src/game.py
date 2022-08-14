@@ -3,6 +3,8 @@ This Module holds the Game Class.
 """
 import copy
 
+from src.operation_util import winning_move
+
 RED_PLAYER = 'R'
 YELLOW_PLAYER = 'Y'
 RED_PLAYER_VAL = -1
@@ -22,6 +24,7 @@ REQUIRED_SEQUENCE = 4
 
 class Game:
     """This Class holds all neccessary Methods to manage a Connect 4 Game"""
+
     def __init__(self):
         """Init function of the Game Class"""
         self.board = []
@@ -45,59 +48,14 @@ class Game:
         Check the Gameboard if a winner is found and returns the winner.
         If no winner is found return the Game State.
         """
-        winner_found = False
-        current_winner = None
-        # Find winner on horizontal
-        for i in range(NUM_ROWS):
-            if not winner_found:
-                for j in range(NUM_COLUMNS - REQUIRED_SEQUENCE - 1):
-                    if self.board[i][j] != 0 and self.board[i][j] == self.board[i][j + 1] \
-                        and self.board[i][j] == \
-                            self.board[i][j + 2] and \
-                            self.board[i][j] == self.board[i][j + 3]:
-                        current_winner = self.board[i][j]
-                        winner_found = True
+        red_is_winner = winning_move(self.board, RED_PLAYER_VAL)
 
-        # Find winner on vertical
-        if not winner_found:
-            for j in range(NUM_COLUMNS):
-                if not winner_found:
-                    for i in range(NUM_ROWS - REQUIRED_SEQUENCE - 1):
-                        if self.board[i][j] != 0 and self.board[i][j] == self.board[i + 1][j] \
-                            and self.board[i][j] == \
-                                self.board[i + 2][j] and \
-                                self.board[i][j] == self.board[i + 3][j]:
-                            current_winner = self.board[i][j]
-                            winner_found = True
+        yellow_is_winner = winning_move(self.board, YELLOW_PLAYER_VAL)
 
-        # Check lower left diagonals
-        if not winner_found:
-            for i in range(NUM_ROWS - REQUIRED_SEQUENCE - 1):
-                j = 0
-                while j <= i:
-                    if self.board[i][j] != 0 and self.board[i][i] == self.board[i + 1][j + 1] \
-                        and self.board[i][i] == \
-                            self.board[i + 2][j + 2] and \
-                            self.board[i][i] == self.board[i + 3][j + 3]:
-                        current_winner = self.board[i][j]
-                        winner_found = True
-                    j = j + 1
-
-        # Check upper right diagonals
-        if not winner_found:
-            for j in range(NUM_COLUMNS - REQUIRED_SEQUENCE - 1):
-                i = j
-                while i <= NUM_ROWS - REQUIRED_SEQUENCE - 1:
-                    if self.board[i][j] != 0 and self.board[i][i] == self.board[i + 1][j + 1] \
-                        and self.board[i][i] == \
-                            self.board[i + 2][j + 2] and \
-                            self.board[i][i] == self.board[i + 3][j + 3]:
-                        current_winner = self.board[i][j]
-                        winner_found = True
-                    i = i + 1
-
-        if winner_found:
-            return current_winner
+        if red_is_winner:
+            return RED_PLAYER_VAL
+        elif yellow_is_winner:
+            return YELLOW_PLAYER_VAL
         else:
             draw_found = True
             # Check for draw

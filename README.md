@@ -52,6 +52,6 @@ Nach Durchführung der Testspiele werden die Boards der letzten 20 % der Spiele 
 
 Um die Tests auszuführen, muss folgender Befehl im Rootverzeichnis des Projekts ausgeführt werden:
 
-    python -m pytest tests
+    python -m pytest tests --cov src
 
 

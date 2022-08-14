@@ -1,9 +1,9 @@
 """
 This Module holds helper functions.
 """
-import math
-
-from src.game import NUM_ROWS, EMPTY_VAL, NUM_COLUMNS
+EMPTY_VAL = 0
+NUM_ROWS = 6
+NUM_COLUMNS = 7
 
 
 def get_available_moves(board):
@@ -19,7 +19,31 @@ def get_available_moves(board):
     return available_moves
 
 
-def round_half_up(n, decimals=0):
-    """Rounds the value half up."""
-    multiplier = 10 ** decimals
-    return math.floor(n * multiplier + 0.5) / multiplier
+def winning_move(board, piece):
+    # Check horizontal locations for win
+    for c in range(NUM_COLUMNS - 3):
+        for r in range(NUM_ROWS):
+            if board[r][c] == piece and board[r][c + 1] == piece and board[r][c + 2] == piece and board[r][
+                c + 3] == piece:
+                return True
+
+    # Check vertical locations for win
+    for c in range(NUM_COLUMNS):
+        for r in range(NUM_ROWS - 3):
+            if board[r][c] == piece and board[r + 1][c] == piece and board[r + 2][c] == piece and board[r + 3][
+                c] == piece:
+                return True
+
+    # Check positively sloped diaganols
+    for c in range(NUM_COLUMNS - 3):
+        for r in range(NUM_ROWS - 3):
+            if board[r][c] == piece and board[r + 1][c + 1] == piece and board[r + 2][c + 2] == piece and \
+                    board[r + 3][c + 3] == piece:
+                return True
+
+    # Check negatively sloped diaganols
+    for c in range(NUM_COLUMNS - 3):
+        for r in range(3, NUM_ROWS):
+            if board[r][c] == piece and board[r - 1][c + 1] == piece and board[r - 2][c + 2] == piece and \
+                    board[r - 3][c + 3] == piece:
+                return True

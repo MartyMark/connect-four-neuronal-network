@@ -12,7 +12,7 @@ def test_simulate_many_games_random():
 
     game = Game()
     game_controller = GameController(game, red_player, yellow_player)
-    game_controller.simulate_many_games(1, 'test')
+    game_controller.simulate_many_games(1, 'src/trainingdata_test.csv')
     assert np.any(game_controller.get_training_history())
 
 
@@ -20,9 +20,9 @@ def test_simulate_many_games_random_neuronal_network():
     model = ConnectFourModelLoad(42)
 
     red_neural_player = Player(RED_PLAYER_VAL, 'model', model)
-    yellow_player = Player(YELLOW_PLAYER_VAL, 'random')
+    yellow_player = Player(YELLOW_PLAYER_VAL, 'src/trainingdata_test.csv')
 
     game = Game()
     game_controller = GameController(game, red_neural_player, yellow_player)
-    game_controller.simulate_many_games(1, 'test')
+    game_controller.simulate_many_games(1, 'src/trainingdata_test.csv')
     assert np.any(game_controller.get_training_history())

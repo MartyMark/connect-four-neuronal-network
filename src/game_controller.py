@@ -16,7 +16,7 @@ class GameController:
         self.yellow_player = yellow_player
         self.training_history = []
 
-    def simulate_many_games(self, number_of_games, mode='test'):
+    def simulate_many_games(self, number_of_games, csv_location):
         """Simulates a game number_of_games times."""
         red_player_wins = 0
         yellow_player_wins = 0
@@ -31,7 +31,7 @@ class GameController:
             else:
                 draws = draws + 1
 
-        with open('src/trainingdata.csv', 'a', encoding="UTF-8", newline='') as file:
+        with open(csv_location, 'a', encoding="UTF-8", newline='') as file:
             writer = csv.writer(file, delimiter=';')
 
             for board_history in self.training_history:
@@ -39,8 +39,7 @@ class GameController:
                 boards = board_history[1]
 
                 for board in boards:
-                    if mode == 'train':
-                        writer.writerow([winner, board])
+                    writer.writerow([winner, board])
 
         total_wins = red_player_wins + yellow_player_wins + draws
         print('Red Wins: ' + str(int(red_player_wins * 100 / total_wins)) + '%')

@@ -24,7 +24,7 @@ def train():
     # 100 epochs
     model = ConnectFourModelTrain(42, 3, 50, 100)
     model.train(trainingdata)
-    model.save()
+    model.model.save('nn_model')
 
 
 print(" * Loading Keras model and Train")

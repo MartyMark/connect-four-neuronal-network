@@ -89,11 +89,6 @@ class MinMaxAlgorithm:
 
         return score
 
-    def get_next_open_row(self, board, col):
-        for r in range(ROW_COUNT):
-            if board[r][col] == 0:
-                return r
-
     def drop_piece(self, board, row, col, piece):
         board[row][col] = piece
 

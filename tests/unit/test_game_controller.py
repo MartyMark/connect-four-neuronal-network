@@ -20,7 +20,7 @@ def test_simulate_many_games_random_neuronal_network():
     model = ConnectFourModelLoad(42)
 
     red_neural_player = Player(RED_PLAYER_VAL, 'model', model)
-    yellow_player = Player(YELLOW_PLAYER_VAL, 'src/trainingdata_test.csv')
+    yellow_player = Player(YELLOW_PLAYER_VAL, 'random')
 
     game = Game()
     game_controller = GameController(game, red_neural_player, yellow_player)

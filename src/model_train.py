@@ -47,7 +47,3 @@ class ConnectFourModelTrain:
     def predict(self, data, index):
         """Returns the next move of the Neural Network."""
         return self.model.predict(np.array(data).reshape(-1, self.number_of_inputs))[0][index]
-
-    def save(self):
-        """Saves the Neural Network Model."""
-        self.model.save('nn_model')

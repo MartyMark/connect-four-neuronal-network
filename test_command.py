@@ -25,7 +25,7 @@ def test():
     second_game = Game()
     game_controller = GameController(second_game, red_neural_player, yellow_player)
     print(" * Playing with red player as Neural Network")
-    game_controller.simulate_many_games(300, 'src/trainingdata.csv')
+    game_controller.simulate_many_games(100, 'src/trainingdata.csv')
 
 
 print(" * Test the Model")

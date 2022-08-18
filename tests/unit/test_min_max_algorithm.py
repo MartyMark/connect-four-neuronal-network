@@ -103,3 +103,28 @@ def test_minimax_yellow_player_2():
 
     assert row == 4
     assert col == 3
+
+
+def test_minimax_yellow_player_no_more_valid_move():
+    board = [
+        [0, -1, 1, -1, 1, -1, 1],
+        [1, -1, 1, -1, 1, -1, 1],
+        [1, -1, 1, -1, 1, -1, 1],
+        [-1, 1, -1, 1, -1, 1, -1],
+        [-1, 1, -1, 1, -1, 1, -1],
+        [-1, 1, -1, 1, -1, 1, -1],
+    ]
+
+    np_board = np.array(board, dtype=np.float64)
+    np_board = np.flipud(np_board)
+
+    min_max = MinMaxAlgorithm(RED_PLAYER_VAL, YELLOW_PLAYER_VAL)
+
+    col, minimax_score = min_max.minimax(np_board, 5, -math.inf, math.inf, True)
+
+    row = min_max.get_next_open_row(np_board, col)
+
+    row = 5 - row
+
+    assert row == 0
+    assert col == 0

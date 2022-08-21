@@ -128,3 +128,11 @@ def test_minimax_yellow_player_no_more_valid_move():
 
     assert row == 0
     assert col == 0
+
+
+def test_evaluate_window():
+    min_max = MinMaxAlgorithm(YELLOW_PLAYER_VAL, RED_PLAYER_VAL)
+
+    minimax_score = min_max.evaluate_window([1, 1, 1, 1], 1)
+
+    assert minimax_score == 100

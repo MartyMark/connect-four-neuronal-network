@@ -37,9 +37,6 @@ class Player:
 
             col, minimax_score = min_max.minimax(np_board, 5, -math.inf, math.inf, True)
 
-            if col is None:
-                return available_moves[random.randrange(0, len(available_moves))]
-
             row = min_max.get_next_open_row(np_board, col)
 
             row = 5 - row

@@ -45,7 +45,7 @@ Um das Model zu testen, muss folgender Befehl Rootverzeichnis des Projekts ausge
 
     python3 test_command.py
 
-Nach Durchführung der Testspiele werden die Boards der letzten 20 % der Spiele in die `trainingsdata.csv` geschrieben.
+Nach Durchführung der Testspiele werden die Boards der durchgeführten Spiele in die `trainingsdata.csv` geschrieben.
 
 ###
 **Test ausführen**

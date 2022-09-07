@@ -20,30 +20,40 @@ def get_available_moves(board):
 
 
 def winning_move(board, piece):
+    """Detects if there is a winner in the game board."""
+
     # Check horizontal locations for win
-    for c in range(NUM_COLUMNS - 3):
-        for r in range(NUM_ROWS):
-            if board[r][c] == piece and board[r][c + 1] == piece and board[r][c + 2] == piece and board[r][
-                c + 3] == piece:
+    for column in range(NUM_COLUMNS - 3):
+        for row in range(NUM_ROWS):
+            if board[row][column] == piece \
+                    and board[row][column + 1] == piece \
+                    and board[row][column + 2] == piece \
+                    and board[row][column + 3] == piece:
                 return True
 
     # Check vertical locations for win
-    for c in range(NUM_COLUMNS):
-        for r in range(NUM_ROWS - 3):
-            if board[r][c] == piece and board[r + 1][c] == piece and board[r + 2][c] == piece and board[r + 3][
-                c] == piece:
+    for column in range(NUM_COLUMNS):
+        for row in range(NUM_ROWS - 3):
+            if board[row][column] == piece \
+                    and board[row + 1][column] == piece \
+                    and board[row + 2][column] == piece \
+                    and board[row + 3][column] == piece:
                 return True
 
     # Check positively sloped diaganols
-    for c in range(NUM_COLUMNS - 3):
-        for r in range(NUM_ROWS - 3):
-            if board[r][c] == piece and board[r + 1][c + 1] == piece and board[r + 2][c + 2] == piece and \
-                    board[r + 3][c + 3] == piece:
+    for column in range(NUM_COLUMNS - 3):
+        for row in range(NUM_ROWS - 3):
+            if board[row][column] == piece \
+                    and board[row + 1][column + 1] == piece \
+                    and board[row + 2][column + 2] == piece \
+                    and board[row + 3][column + 3] == piece:
                 return True
 
     # Check negatively sloped diaganols
-    for c in range(NUM_COLUMNS - 3):
-        for r in range(3, NUM_ROWS):
-            if board[r][c] == piece and board[r - 1][c + 1] == piece and board[r - 2][c + 2] == piece and \
-                    board[r - 3][c + 3] == piece:
+    for column in range(NUM_COLUMNS - 3):
+        for row in range(3, NUM_ROWS):
+            if board[row][column] == piece \
+                    and board[row - 1][column + 1] == piece \
+                    and board[row - 2][column + 2] == piece \
+                    and board[row - 3][column + 3] == piece:
                 return True

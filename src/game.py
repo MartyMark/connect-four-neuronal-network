@@ -54,19 +54,19 @@ class Game:
 
         if red_is_winner:
             return RED_PLAYER_VAL
-        elif yellow_is_winner:
+        if yellow_is_winner:
             return YELLOW_PLAYER_VAL
-        else:
-            draw_found = True
-            # Check for draw
-            for i in range(len(self.board)):
-                for j in range(len(self.board[i])):
-                    if self.board[i][j] == EMPTY_VAL:
-                        draw_found = False
-            if draw_found:
-                return GAME_STATE_DRAW
-            else:
-                return GAME_STATE_NOT_ENDED
+
+        draw_found = True
+        # Check for draw
+        for i in range(len(self.board)):
+            for j in range(len(self.board[i])):
+                if self.board[i][j] == EMPTY_VAL:
+                    draw_found = False
+        if draw_found:
+            return GAME_STATE_DRAW
+
+        return GAME_STATE_NOT_ENDED
 
     def move(self, move, player):
         """Sets the move of the Player and saves it to the board_history."""

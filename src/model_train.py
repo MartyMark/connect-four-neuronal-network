@@ -23,13 +23,13 @@ class ConnectFourModelTrain:
 
     def train(self, dataset):
         """Trains the Model with the given Dataset."""
-        input = []
+        input_model = []
         output = []
         for data in dataset:
-            input.append(data[1])
+            input_model.append(data[1])
             output.append(data[0])
 
-        x = np.array(input).reshape((-1, self.number_of_inputs))
+        x = np.array(input_model).reshape((-1, self.number_of_inputs))
         y = to_categorical(output, 3)
         limit = int(0.8 * len(x))
         x_train = x[:limit]

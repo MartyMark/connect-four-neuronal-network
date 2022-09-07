@@ -1,7 +1,9 @@
 import numpy as np
 import math
 
-from src.min_max import MinMaxAlgorithm
+import pytest
+
+from src.min_max import MinMaxAlgorithm, get_next_open_row
 from src.game import RED_PLAYER_VAL, YELLOW_PLAYER_VAL
 
 
@@ -22,7 +24,7 @@ def test_minimax_red_player_1():
 
     col, minimax_score = min_max.minimax(np_board, 5, -math.inf, math.inf, True)
 
-    row = min_max.get_next_open_row(np_board, col)
+    row = get_next_open_row(np_board, col)
 
     row = 5 - row
 
@@ -47,7 +49,7 @@ def test_minimax_red_player_2():
 
     col, minimax_score = min_max.minimax(np_board, 5, -math.inf, math.inf, True)
 
-    row = min_max.get_next_open_row(np_board, col)
+    row = get_next_open_row(np_board, col)
 
     row = 5 - row
 
@@ -72,7 +74,7 @@ def test_minimax_yellow_player_1():
 
     col, minimax_score = min_max.minimax(np_board, 5, -math.inf, math.inf, True)
 
-    row = min_max.get_next_open_row(np_board, col)
+    row = get_next_open_row(np_board, col)
 
     row = 5 - row
 
@@ -97,7 +99,7 @@ def test_minimax_yellow_player_2():
 
     col, minimax_score = min_max.minimax(np_board, 5, -math.inf, math.inf, True)
 
-    row = min_max.get_next_open_row(np_board, col)
+    row = get_next_open_row(np_board, col)
 
     row = 5 - row
 
@@ -122,7 +124,7 @@ def test_minimax_yellow_player_no_more_valid_move():
 
     col, minimax_score = min_max.minimax(np_board, 5, -math.inf, math.inf, True)
 
-    row = min_max.get_next_open_row(np_board, col)
+    row = get_next_open_row(np_board, col)
 
     row = 5 - row
 
@@ -136,3 +138,19 @@ def test_evaluate_window():
     minimax_score = min_max.evaluate_window([1, 1, 1, 1], 1)
 
     assert minimax_score == 100
+
+
+def test_get_next_open_row_error():
+    with pytest.raises(ValueError) as error:
+        board = [
+            [-1, -1, 1, -1, 1, -1, 1],
+            [1, -1, 1, -1, 1, -1, 1],
+            [1, -1, 1, -1, 1, -1, 1],
+            [-1, 1, -1, 1, -1, 1, -1],
+            [-1, 1, -1, 1, -1, 1, -1],
+            [-1, 1, -1, 1, -1, 1, -1],
+        ]
+
+        get_next_open_row(board, 0)
+
+        assert "Es konnte beim Minmax-Algorithmus kein offene Reihe mehr gefunden werden." in str(error.value)

@@ -5,7 +5,7 @@ import math
 import random
 import copy
 import numpy as np
-from src.min_max import MinMaxAlgorithm
+from src.min_max import MinMaxAlgorithm, get_next_open_row
 
 from src.game import RED_PLAYER_VAL, YELLOW_PLAYER_VAL
 from src.operation_util import get_available_moves
@@ -37,32 +37,33 @@ class Player:
 
             col, minimax_score = min_max.minimax(np_board, 5, -math.inf, math.inf, True)
 
-            row = min_max.get_next_open_row(np_board, col)
+            row = get_next_open_row(np_board, col)
 
             row = 5 - row
 
             return row, col
-        else:
-            max_value = 0
-            best_move = available_moves[0]
-            for available_move in available_moves:
-                board_copy = copy.deepcopy(board)
-                board_copy[available_move[0]][available_move[1]] = self.value
-                if self.value == RED_PLAYER_VAL:
-                    value = self.model.predict(board_copy, 2)
-                else:
-                    value = self.model.predict(board_copy, 0)
-                if value > max_value:
-                    max_value = value
-                    best_move = available_move
-            return best_move
+
+        max_value = 0
+        best_move = available_moves[0]
+        for available_move in available_moves:
+            board_copy = copy.deepcopy(board)
+            board_copy[available_move[0]][available_move[1]] = self.value
+            if self.value == RED_PLAYER_VAL:
+                value = self.model.predict(board_copy, 2)
+            else:
+                value = self.model.predict(board_copy, 0)
+            if value > max_value:
+                max_value = value
+                best_move = available_move
+        return best_move
 
     def get_player(self):
         """Returns the current player."""
         return self.value
 
     def get_other_player(self):
+        """Returns the other player."""
         if self.value == RED_PLAYER_VAL:
             return YELLOW_PLAYER_VAL
-        else:
-            return RED_PLAYER_VAL
+
+        return RED_PLAYER_VAL
